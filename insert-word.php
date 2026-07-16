@@ -1,8 +1,8 @@
 <?php
-$servername = "sql104.infinityfree.com";
-$username = "if0_42421602";
-$password = "RLPGHOi4mvD";
-$dbname = "if0_42421602_universe";
+$servername = "...";
+$username = "...";
+$password = "...";
+$dbname = "...";
 
 $w = $_GET['visitor-word'];
 
