@@ -55,7 +55,7 @@ No external framework was used.
 
 ---
 
-## ⚙️ Website Workflow
+## 🔄 How Data Flows Through the Website
 
 **Summary**
 
