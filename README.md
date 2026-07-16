@@ -10,8 +10,7 @@ The submitted words are stored in a MySQL database and displayed dynamically on 
 
 [🚀 Visit using InfinityFree](https://my-little-universe.page.gd/one-word.html)
 
-
-[🟥 I added a file called "ملاحظات تفصيلية لنفسي (مشروع2)" where I wrote personal notes for myself in colloquial Arabic, in case you would like to read it.](ملاحظات20%تفصيلية20%لنفسي20%(مشروع2).pdf)
+[🟥 I added a file called "ملاحظات تفصيلية لنفسي (مشروع2)," where I wrote personal notes for myself in colloquial Arabic, in case you would like to read it.](ملاحظات%20تفصيلية%20لنفسي%20%28مشروع2%29.pdf)
 
 ---
 
