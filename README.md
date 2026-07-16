@@ -52,3 +52,37 @@ The page follows the same space-inspired visual style as **My Little Universe**,
 - InfinityFree
 
 No external framework was used.
+
+---
+
+## ⚙️ Website Workflow
+
+**Summary**
+
+`Send` → `insert-word.php` → `getWords()` → `get-words.php` → `innerHTML` → Eye Button Style
+
+When the eye button is clicked:
+
+`toggleWords()` → 1. Toggle Status → 2. Call `getWords()` Again
+
+**Details**
+
+1. The user enters a word and clicks **Send**.
+
+2. The word is sent to the `insert-word.php` file. In this file, the word is inserted into the database using an SQL `INSERT` statement, and then the page is reloaded.
+
+3. The `getWords()` function in JavaScript is called. It sends a request to the `get-words.php` file, and the request does not include `POST`.
+
+4. The `get-words.php` file checks the request and sees that it does not contain `POST`, so it does not execute the `if` statement, which means it does not perform the toggle. Instead, it executes the `SELECT` statement and retrieves the result from the database, which is either “all the words” or “nothing.”
+
+5. The result is returned to the `getWords()` function, stored in the `output` variable, and displayed using `innerHTML`.
+
+6. We are still inside the same `getWords()` function. The function now checks the result:
+   - If the result is “nothing,” it adds a line over the eye button.
+   - If the result is “all the words,” it displays the eye button without the line.
+
+7. When the eye button is clicked, the `toggleWords()` function in JavaScript is called. It does two things:
+   1. It sends a request with `POST` to `get-words.php`. The file then executes the `if` statement, which performs the toggle, and exits without executing the `SELECT` statement.
+   2. It calls the `getWords()` function, whose role was explained above, to display the result. This means the result is displayed after the toggle. If the status becomes `0`, the words disappear, and if the status becomes `1`, all the words appear.
+
+---
