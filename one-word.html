@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>One Word from Your Universe</title>
+    <meta charset="UTF-8">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS File -->
+    <link rel="stylesheet" href="one-word-style.css">
+</head>
+
+<body>
+
+    <!-- backgrounds -->
+    <div class="stars"></div>
+    <div class="glow glow-one"></div>
+    <div class="glow glow-two"></div>
+
+    <!-- header -->
+    <header>
+
+        <!-- navigation bar -->
+        <nav class="navbar">
+            <a class="logo" href="index.html">MY UNIVERSE</a>
+
+            <div class="nav-links">
+                <a href="#enter-word-section">Enter Your Word</a>
+                <a href="#show-words-section">Show All Entered Words</a>
+            </div>
+        </nav>
+
+        <!-- moving objects -->
+        <div class="orbit orbit-one">
+            <div class="planet planet-one"></div>
+        </div>
+        <div class="orbit orbit-two">
+            <div class="planet planet-two"></div>
+        </div>
+
+    </header>
+
+    <main>
+
+        <!-- 1) Enter Your Word Section -->
+        <section class="section" id="enter-word-section">
+            <div class="glass-card enter-word-card">
+                <h1>What is one word that represents your universe?</h1>
+
+                <form class="word-form" action="insert-word.php" method="get">
+                    <label for="visitor-word">Your word</label>
+
+                    <div class="input-wrapper">
+                        <span class="star-icon">✦</span>
+
+                        <input type="text" name="visitor-word" id="visitor-word"
+                            placeholder="One word only. Write the word that feels most like you." maxlength="30"
+                            pattern="\S+" title="Please enter one word only, without spaces." autocomplete="off"
+                            required>
+                    </div>
+
+                    <div class="floating-words">
+                        <span>Curiosity</span>
+                        <span class="word-two">Wonder</span>
+                        <span class="word-three">Dreams</span>
+                        <span class="word-four">Peace</span>
+                    </div>
+
+                    <button type="submit">Send</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- 2) Show All Entered Words Section -->
+        <section class="section" id="show-words-section">
+            <div class="glass-card show-words-card">
+                <button type="button" id="toggle-words-button" title="Hide all words" onclick="toggleWords()">
+                    👁
+                </button>
+                <p>Every universe begins with one word:</p>
+                <div id="received-words"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- footer -->
+    <footer>
+        <p>Built with HTML &amp; CSS</p>
+        <p>© 2026 My Little Universe</p>
+    </footer>
+
+    <!-- script to show the words with toggle enabled -->
+    <script>
+        getWords("get-words.php");
+        async function getWords(url) {
+            let response = await fetch(url);
+            let output = await response.text();
+            document.getElementById("received-words").innerHTML = output;
+
+            let eyeButton =  document.getElementById("toggle-words-button");
+            if (output.trim() == "") {
+                eyeButton.className = "words-hidden";
+                eyeButton.title = "Show all words";
+            } else {
+                eyeButton.className = "";
+                eyeButton.title = "Hide all words";
+            }
+        }
+
+        async function toggleWords() {
+            await fetch("get-words.php", {
+                method: "POST"
+            });
+            getWords("get-words.php");
+        }
+    </script>
+    
+</body>
+
+</html>
